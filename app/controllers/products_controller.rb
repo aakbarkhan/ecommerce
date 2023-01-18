@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
+  # include CurrentCart
+  # before_action :set_cart
   before_action :set_product, only: %i[ show edit update destroy ]
-
   # GET /products or /products.json
   def index
     @products = Product.all
@@ -28,6 +29,7 @@ class ProductsController < ApplicationController
         format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
         format.json { render :show, status: :created, location: @product }
       else
+        puts @product.errors.full_messages
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
@@ -40,6 +42,10 @@ class ProductsController < ApplicationController
       if @product.update(product_params)
         format.html { redirect_to product_url(@product), notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
+
+        # @products = Product.all
+        # ActionCable.server.broadcast 'products', html: render_to_string('store/index', layout: false)
+
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }
