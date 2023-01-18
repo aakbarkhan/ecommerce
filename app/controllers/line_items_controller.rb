@@ -22,25 +22,60 @@ class LineItemsController < ApplicationController
   end
 
   # POST /line_items or /line_items.json
+  # def create
+  #   product = Product.find(params[:product_id])
+  #   @line_item = @cart.add_product(product)
+
+  #   # @line_item = @cart.line_items.build(product: product)
+  #   # @line_item = LineItem.new(line_item_params)
+
+  #   respond_to do |format|
+  #     if @line_item.save
+  #       # format.html { redirect_to @line_item.cart }
+  #       format.html { redirect_to store_index_url }
+
+  #       # format.html { redirect_to @line_item.cart, notice: "Line item was successfully created." }
+  #       format.json { render :show, status: :created, location: @line_item }
+  #     else
+  #       format.html { render :new, status: :unprocessable_entity }
+  #       format.json { render json: @line_item.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+  # def create
+  #   product = Product.find(params[:product_id])
+  #   @line_item = @cart.add_product(product)
+  #   respond_to do |format|
+  #     if @line_item.save
+  #         format.html { redirect_to store_index_url }
+  #         format.js
+  #         format.json { render :show,
+  #         status: :created, location: @line_item }
+  #     else
+  #         format.html { render :new }
+  #         format.json { render json: @line_item.errors,
+  #         status: :unprocessable_entity }
+  #       end
+  #     end
+  #   end
   def create
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product)
-
-    # @line_item = @cart.line_items.build(product: product)
-    # @line_item = LineItem.new(line_item_params)
-
     respond_to do |format|
-      if @line_item.save
-        format.html { redirect_to @line_item.cart }
-
-        # format.html { redirect_to @line_item.cart, notice: "Line item was successfully created." }
-        format.json { render :show, status: :created, location: @line_item }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        if @line_item.save
+            format.html { redirect_to store_index_url }
+            format.js { @current_item = @line_item }
+            # format.js
+            format.json { render :show,
+            status: :created, location: @line_item }
+        else
+            format.html { render :new }
+            format.json { render json: @line_item.errors,
+            status: :unprocessable_entity }
+        end
       end
     end
-  end
+    
 
   # PATCH/PUT /line_items/1 or /line_items/1.json
   def update

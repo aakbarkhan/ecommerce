@@ -7,6 +7,8 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    
   </head>
 
   <body>
@@ -18,9 +20,11 @@
     <%# render("cart") %>
 
       <nav class="side_nav">
-      <div id="cart" class="carts">
-      <%= render @cart %>
-      </div>
+        <% if @cart %>
+          <div id="cart" class="carts">
+            <%= render @cart %>
+          </div>
+        <% end %>
         <ul>
           <li>
             <a href="/">Home </a>
