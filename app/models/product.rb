@@ -7,4 +7,5 @@ class Product < ApplicationRecord
     validates :title, uniqueness: true
     # validates :image_url, allow_blank: true, format: { with: %r{\.(gif|jpg|png)\Z}i, message: 'must be a URL for GIF, JPG or PNG image.' }
     #  the above line can be commented out for the specific type of image file and is more protected
+    has_many :orders, through: :line_items
 end
