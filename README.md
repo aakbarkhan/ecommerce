@@ -1,7 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app is all about ruby on rails and understanding the components of ruby on rails part.
+
 
 Things you may want to cover:
 
@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+Order-details table
+productId and quantity
+order_id
