@@ -23,6 +23,7 @@ prohibited this order from being saved:</h2>
 <%= form.label :email %>
    <%= form.email_field :email, id: :order_email, size: 40 %>
 </div>
+<div id='pay-type'></div>
 <div class="field">
 <%= form.label :pay_type %>
    <%= form.select :pay_type, Order.pay_types.keys, id: :order_pay_type,
